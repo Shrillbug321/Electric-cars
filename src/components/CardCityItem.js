@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-
-function CardCityItem(props) {
+export default function CardCityItem(props) {
     const { cityName, isSelected, handleCityClick, isStartCity} = props;
 
     const handleClick = () => {
@@ -20,7 +19,6 @@ function CardCityItem(props) {
             <img
               className='cards__item__img_small'
               alt='Travel Image'
-              src='images/city.jpg'
             />
           </figure>
           <div className='cards__item__info_small'>
@@ -30,4 +28,3 @@ function CardCityItem(props) {
       </li>
     );
   }
-export default CardCityItem;
