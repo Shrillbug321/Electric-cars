@@ -1,25 +1,19 @@
 import React, {useEffect, useRef} from "react";
 
-export function Canvas({cities, chargers, route, distances})
+export function Canvas({cities, route, distances})
 {
     const ref = useRef()
     useEffect(() => {
         if (ref.current){
             const ctx = ref.current.getContext('2d')
             let timer = setInterval(()=>{
-
                 if (cities.length > 0 && ctx !== null)
                 {
-                    console.log(route)
                     ctx.clearRect(0,0,1600,900);
                     clearInterval(timer);
                     const radius = 40;
                     const left =  0.5*(ref.current?.width??1600);
                     const top = 130;
-                    console.log(left)
-                    //ctx.canvas.height = top * cities.length+radius*2.5
-                    console.log(cities.length)
-                    console.log(top*route.length+radius*2.2)
                     ctx.canvas.height = 130*route.length-30
                     ctx.canvas.width = window.innerWidth;
                     for (let i = 0; i < route.length; i++) {

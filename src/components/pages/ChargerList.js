@@ -5,28 +5,22 @@ import CardCityItem from '../CardCityItem';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import ButtonMU from '@mui/material/Button';
-import { useNavigate } from 'react-router-dom';
 
 export default function ChargerList() {
   const [chargers, setChargers] = useState([]);
   const [deleted, setDeleted] = useState('');
-  const navigate = useNavigate();
   const [startIndex, setStartIndex] = useState(0);
   const itemsPerPage = 5;
 
   const handleDelete = (name) => {
-    console.clear();
     setDeleted(name);
     alert("Usunięto ładowarkę: " + name);
 
     deleteCharger({ ch_name: name })
-      .then((r) => {
-        console.log(r);
-
-        // Po usunięciu ładowarki, zaktualizuj stan komponentu chargers
+      .then(() => {
         setChargers(prevChargers => prevChargers.filter(charger => charger !== name));
       })
-      .catch((error) => {
+      .catch(error => {
         console.error("Błąd podczas usuwania ładowarki:", error);
       });
 	  setStartIndex((prevIndex) => Math.max(prevIndex - itemsPerPage, 0));
@@ -36,11 +30,10 @@ export default function ChargerList() {
     setStartIndex((prevIndex) => {
       const remainingItems = chargers.length - (prevIndex + itemsPerPage);
       const newIndex = prevIndex + itemsPerPage;
-      if (remainingItems >= 3) {
+      if (remainingItems >= 3)
         return newIndex;
-      } else {
+      else
         return newIndex - 3;
-      }
     });
   };
 
@@ -48,7 +41,7 @@ export default function ChargerList() {
     setStartIndex((prevIndex) => Math.max(prevIndex - itemsPerPage, 0));
   };
 
-  const [deleteCharger, { deleteLoading, first }] = useLazyWriteCypher(
+  const [deleteCharger] = useLazyWriteCypher(
     `MATCH (n:Charger {name: '$ch_name'})
           RETURN n`
   );

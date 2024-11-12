@@ -1,12 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-function CardItem(props) {
-  const { src, text, desc, label, cardNumber, cardRange, isSelected, handleCardClick } = props;
+export default function CardItem(props) {
+  const { cardNumber, cardRange, isSelected, handleCardClick } = props;
 
   const handleClick = () => {
     handleCardClick(cardNumber,cardRange);
   };
+
   return (
     <>
       <li className={`cards__item ${isSelected ? 'selected' : ''}`}
@@ -16,8 +17,8 @@ function CardItem(props) {
           <figure className='cards__item__pic-wrap' data-category={props.label}>
             <img
               className='cards__item__img'
-              alt='Travel Image'
               src={props.src}
+              alt="card"
             />
           </figure>
           <div className='cards__item__info'>
@@ -29,5 +30,3 @@ function CardItem(props) {
     </>
   );
 }
-
-export default CardItem;

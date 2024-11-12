@@ -25,7 +25,7 @@
 }
 
 .btn--outline_dark {
-  background-color: gray;
+  background-color: rgb(128, 128, 128);
   color: #000000;
   padding: 8px 20px;
   border: 1px solid var(--primary);
@@ -47,5 +47,4 @@
   transition: all 0.3s ease-out;
   background: #fff;
   color: #242424;
-  transition: 250ms;
 }
